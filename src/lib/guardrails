@@ -1,4 +1,4 @@
-import { providerError } from './errors';
+import { providerError } from './errors.ts';
 import type { EvalErrorInfo } from '../types/result';
 
 export interface GuardrailConfig {
