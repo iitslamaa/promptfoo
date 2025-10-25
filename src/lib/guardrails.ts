@@ -1,5 +1,5 @@
-import { providerError } from './errors.ts';
-import type { EvalErrorInfo } from '../types/result';
+import { providerError } from './errors.js';
+import type { EvalErrorInfo } from '../types/result.js';
 
 export interface GuardrailConfig {
   retryBudget?: number;        // default 2
