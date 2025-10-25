@@ -2,10 +2,10 @@ import { providerError } from './errors.js';
 import type { EvalErrorInfo } from '../types/result.js';
 
 export interface GuardrailConfig {
-  retryBudget?: number;        // default 2
-  baseDelayMs?: number;        // default 250
-  maxDelayMs?: number;         // default 4000
-  timeoutMs?: number;          // default 60000
+  retryBudget?: number; // default 2
+  baseDelayMs?: number; // default 250
+  maxDelayMs?: number; // default 4000
+  timeoutMs?: number; // default 60000
   respectRetryAfter?: boolean; // default true
 }
 
@@ -56,23 +56,23 @@ export async function withRetries<TArgs, TResp>(
       const aborted = controller.signal.aborted;
       const retryable =
         aborted ||
-        code === 'ECONNRESET' || code === 'ETIMEDOUT' ||
-        status === 429 || (status && status >= 500 && status < 600);
+        code === 'ECONNRESET' ||
+        code === 'ETIMEDOUT' ||
+        status === 429 ||
+        (status && status >= 500 && status < 600);
 
       if (!retryable || attempt > retryBudget) {
         clearTimeout(timeout);
         // map final failure to provider_error
-        throw providerError(
-          `Provider request failed after ${attempt} attempt(s)`,
-          {
-            provider: providerName,
-            code: typeof code === 'string' ? code : String(code ?? status ?? 'UNKNOWN'),
-            raw: { status, code, message: err?.message },
-            hint: status === 429
+        throw providerError(`Provider request failed after ${attempt} attempt(s)`, {
+          provider: providerName,
+          code: typeof code === 'string' ? code : String(code ?? status ?? 'UNKNOWN'),
+          raw: { status, code, message: err?.message },
+          hint:
+            status === 429
               ? 'Hit rate limit. Lower concurrency or enable caching.'
               : 'Check network/credentials or retry later.',
-          } as Partial<EvalErrorInfo>
-        );
+        } as Partial<EvalErrorInfo>);
       }
 
       // Backoff with optional Retry-After
