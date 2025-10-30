@@ -137,12 +137,11 @@ Initialize a new project with dummy files.
 
 Start a browser UI for visualization of results.
 
-| Option                | Description                             |
-| --------------------- | --------------------------------------- |
-| `-p, --port <number>` | Port number for the local server        |
-| `-y, --yes`           | Skip confirmation and auto-open the URL |
+| Option                | Description                                             |
+| --------------------- | ------------------------------------------------------- |
+| `-p, --port <number>` | Port number for the local server                        |
+| `-y, --yes`           | Skip confirmation and auto-open the URL                 |
 | `--no-open`           | Start the local server without opening a browser window |
-
 
 Example:
 
