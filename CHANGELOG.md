@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Docs
+
 - Document `promptfoo view --no-open` flag in the command-line docs and add a usage example.
 
 ### Added
